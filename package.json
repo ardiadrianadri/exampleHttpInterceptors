@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"ng serve\" \"nodemon mock-server/index.js\"",
+    "start": "concurrently \"ng serve --proxy proxy/proxy.json\" \"nodemon mock-server/index.js\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
