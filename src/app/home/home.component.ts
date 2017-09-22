@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
 
+import { HttpCustomService } from '../core/http-custom.service';
+
 @Component({
     // tslint:disable-next-line:component-selector
     selector: 'interceptor-home',
@@ -9,21 +11,25 @@ import { MdSnackBar } from '@angular/material';
 })
 export class HomeComponent {
 
-    constructor( private _snackBar: MdSnackBar) {}
+    constructor(
+      private _snackBar: MdSnackBar,
+      private _http: HttpCustomService
+    ) {}
 
     sim401 () {
-        console.log('Simulation of 401 error');
+        this._http.get('/mock/401').subscribe();
     }
 
     sim403 () {
-        console.log('Simulation of 402 error');
+      //this._http.get('/mock/403');
+      this._snackBar.open('Simulation of 403 error', 'close');
     }
 
     sim500 () {
-        this._snackBar.open('Simulation of 500 error', 'close');
+        this._http.get('/mock/500').subscribe();
     }
 
     sim200 () {
-        console.log('Simulation of 200 OK');
+        this._http.get('/mock/200').subscribe();
     }
 }
